@@ -1,8 +1,10 @@
 package com.midem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.midem.models.rank.Rank;
@@ -55,4 +57,16 @@ public class RankService {
 		return null;
 	}
 	
+	public List<Rank> list(String level) {
+		List<Rank> ranks = new ArrayList<Rank>();
+		List<Rank> returnQuery = rankRepository.findAll(Sort.by(Sort.Direction.DESC, "score"));
+		
+		for (Rank rank : returnQuery) {
+			if (rank.getLevel().equalsIgnoreCase(level)) {
+				ranks.add(rank);
+			}
+		}
+		
+		return ranks;
+	}
 }
