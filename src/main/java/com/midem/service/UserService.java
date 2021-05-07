@@ -17,14 +17,18 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public User create(User user) {
+	public UserResponse create(User user) {
 		Boolean userAlreadyExists = this.findByName(user.getName());
 		
 		if (userAlreadyExists) {
 			throw new UserAlreadyExistsException();
 		}
 		
-		return userRepository.save(user);
+		
+		User userSave = userRepository.save(user);
+		UserResponse userResponse = new UserResponse(userSave.getId(), userSave.getName());
+		
+		return userResponse;
 	}
 	
 	public Boolean findByName(String name) {
