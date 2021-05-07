@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.midem.models.User;
+import com.midem.models.dto.UserLoginResponse;
 import com.midem.models.dto.UserResponse;
 import com.midem.repository.UserRepository;
 
@@ -48,5 +49,17 @@ public class UserService {
 		}
 		
 		return users;
+	}
+	
+	public UserLoginResponse findUser(String name, String password) {
+		List<User> users = userRepository.findAll();
+		
+		for (User user : users) {
+			if (user.getName().equals(name) && user.getPassword().equals(password)) {
+				return new UserLoginResponse(true, user.getId(), user.getName());
+			}
+		}
+		
+		return new UserLoginResponse(false);
 	}
 }
