@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.midem.models.rank.Rank;
-import com.midem.models.rank.RankRequest;
+import com.midem.models.dto.RankRequest;
+import com.midem.models.dto.RankResponse;
 import com.midem.service.RankService;
 
 @RestController
@@ -30,7 +30,7 @@ public class RankController {
 	}
 	
 	@GetMapping
-	public List<Rank> list(@RequestParam String level) {
+	public List<RankResponse> list(@RequestParam String level) {
 		return rankService.list(level);
 	}
 	

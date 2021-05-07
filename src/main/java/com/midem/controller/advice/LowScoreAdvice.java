@@ -1,4 +1,4 @@
-package com.midem.controller;
+package com.midem.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

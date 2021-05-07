@@ -1,4 +1,4 @@
-package com.midem.models.rank;
+package com.midem.models;
 
 import java.io.Serializable;
 
@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import com.midem.models.user.User;
 
 @Entity
 public class Rank implements Serializable {

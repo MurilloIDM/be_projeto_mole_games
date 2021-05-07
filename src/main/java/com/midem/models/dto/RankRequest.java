@@ -1,4 +1,4 @@
-package com.midem.models.rank;
+package com.midem.models.dto;
 
 public class RankRequest {
 	

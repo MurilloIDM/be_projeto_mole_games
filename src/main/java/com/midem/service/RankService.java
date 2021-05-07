@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.midem.models.rank.Rank;
-import com.midem.models.rank.RankRequest;
-import com.midem.models.user.User;
+import com.midem.models.Rank;
+import com.midem.models.User;
+import com.midem.models.dto.RankRequest;
+import com.midem.models.dto.RankResponse;
+import com.midem.models.dto.UserResponse;
 import com.midem.repository.RankRepository;
 import com.midem.repository.UserRepository;
 
@@ -57,13 +59,14 @@ public class RankService {
 		return null;
 	}
 	
-	public List<Rank> list(String level) {
-		List<Rank> ranks = new ArrayList<Rank>();
+	public List<RankResponse> list(String level) {
+		List<RankResponse> ranks = new ArrayList<RankResponse>();
 		List<Rank> returnQuery = rankRepository.findAll(Sort.by(Sort.Direction.DESC, "score"));
 		
 		for (Rank rank : returnQuery) {
 			if (rank.getLevel().equalsIgnoreCase(level)) {
-				ranks.add(rank);
+				UserResponse userResponse = new UserResponse(rank.getUser().getId(), rank.getUser().getName());
+				ranks.add(new RankResponse(rank.getId(), rank.getScore(), rank.getLevel(), userResponse));
 			}
 		}
 		

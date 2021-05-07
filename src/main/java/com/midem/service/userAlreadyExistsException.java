@@ -1,10 +1,10 @@
 package com.midem.service;
 
-public class userAlreadyExistsException extends RuntimeException {
+public class UserAlreadyExistsException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
-	userAlreadyExistsException() {
+	UserAlreadyExistsException() {
 		super("Usuário já existe com esse nome!");
 	}
 	
